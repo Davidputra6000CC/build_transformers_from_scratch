@@ -64,8 +64,9 @@ The notebooks are the main learning material. I use them to work through the mod
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Davidputra6000CC/neural_net.git
-cd neural_net
+git clone https://github.com/Davidputra6000CC/build_transformers_from_scratch.git
+cd build_transformers_from_scratch
+code .
 ```
 
 ### 2. Install uv
@@ -121,8 +122,8 @@ Activation is optional when using commands such as `uv run`.
 
 Open the repository in VS Code, select the `.venv` Python interpreter as your notebook kernel, and start with:
 
-1. `src/makemore/language_model_biagram.ipynb`
-2. `src/makemore/multi_level_perceptron.ipynb`
+1. `src/language_model_biagram.ipynb`
+2. `src/multi_level_perceptron.ipynb`
 
 Run the cells sequentially to follow the experiments.
 

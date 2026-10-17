@@ -37,19 +37,17 @@ Moving beyond single-character transitions to a neural network that uses a conte
 ## Project Structure
 
 ```text
-neural_net/
+build_transformers_from_scratch/
+│
 ├── src/
-│   └── makemore/
-│       ├── __init__.py
-│       ├── language_model_biagram.ipynb
-│       ├── multi_level_perceptron.ipynb
-│       ├── names.txt
-│       └── lr.png
+│   ├── language_model_biagram.ipynb
+│   ├── multi_level_perceptron.ipynb
+│   └── names.txt
+│
 ├── .gitignore
 ├── .python-version
-├── pyproject.toml
 ├── README.md
-├── t.png
+├── pyproject.toml
 └── uv.lock
 ```
 

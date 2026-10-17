@@ -1,153 +1,174 @@
+# Makemore — Building Character-Level Language Models
 
-https://github.com/karpathy/nn-zero-to-hero/tree/master/lectures/makemore
-used this repo as my learning lectures 
-posting https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part1_bigrams.ipynb
-and this https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part2_mlp.ipynb
+I'm working through Andrej Karpathy's [Neural Networks: Zero to Hero](https://github.com/karpathy/nn-zero-to-hero) lecture series, starting with character-level language models and building my understanding from the ground up.
 
-i want you to enerate a read me that is for recureters and for otyher learners wanted to learn from my repo the tone is clearly as i an building this and that give credits to the original repo also the papers related to these taht are in the original repo my git hub is 
-https://github.com/Davidputra6000CC
-also  my LinkedIn is https://www.linkedin.com/in/garv-sharma-157796395/
-this is the project structure i wanted to keep this also instructions on how to copy the repo and use the environments  and 
+This repository documents my implementations, experiments, and learning process as I work through the `makemore` lectures. I'm starting with a bigram language model and moving on to a multilayer perceptron (MLP), exploring how models learn patterns in text and generate new names.
 
-git ignore 
-I’ve written your README.md, written as a learner’s project with credit to Karpathy’s repo and notebooks. It has separate sections for learners and recruiters, your GitHub and LinkedIn links, and a project structure tree matching your screenshot. It also covers cloning and uv sync setup, plus PowerShell, cmd and macOS/Linux activation.
+My goal is to understand the ideas behind language models by implementing them step by step rather than relying entirely on pre-built models.
 
-Before you commit it, check these:
+## What I'm Building
 
-Repo URL: replace <build_transformers_from_scrratch> in the clone command with your actual repo name. I couldn’t tell it from the screenshot.
-Notebook names: I used language_model_biagram.ipynb and multi_level_perceptron.ipynb, which is how they appear in your explorer. Fix them if the real filenames differ.
-Papers: I only listed Bengio et al. 2003 as covered so far, since it’s the paper behind Part 2. The later papers (RNN, LSTM, GRU, WaveNet, Transformer) are labelled “coming up”. Add or remove entries as you finish more lectures.
-requirements.txt: the plain-pip fallback mentions requirements.txt, which isn’t in your tree. Delete that block if you only want to support uv.
-.gitignore: I didn’t change it. I’d use your second, longer version, since it also covers share, etc, .lock and CACHEDIR.TAG.
+### 1. Bigram Language Model
 
-Readme
-Document·MD 
+A character-level language model that predicts the next character based on the current character.
 
+- Building a vocabulary and encoding characters as integers
+- Counting character transitions and estimating probabilities
+- Generating names by sampling from probability distributions
+- Understanding negative log-likelihood as a loss function
+- Rebuilding the model as a simple neural network and training it with gradient descent
 
+**Reference:** [Lecture 2 — Building makemore, Part 1: Bigrams](https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part1_bigrams.ipynb)
 
+### 2. Multilayer Perceptron (MLP)
 
+Moving beyond single-character transitions to a neural network that uses a context of previous characters to predict the next one.
 
-Readme · MD
-Makemore: Learning Language Models From Scratch
-I'm building this repo as I work through Andrej Karpathy's Neural Networks: Zero to Hero series. It's a learning-in-public project: the notebooks are my own working-through of each lecture, with my code, my notes, and my mistakes along the way.
+- Character embeddings and learned representations
+- Context windows and embedding lookup tables
+- Hidden layers, activation functions, and softmax probabilities
+- Forward propagation, loss calculation, and gradient-based optimization
+- Learning-rate experimentation
+- Training, development, and test splits
+- Understanding overfitting and model evaluation
 
-Author: Garv Sharma GitHub | LinkedIn
+**Reference:** [Lecture 3 — Building makemore, Part 2: MLP](https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part2_mlp.ipynb)
 
-Credits
-This project would not exist without Andrej Karpathy. The lectures, the makemore project idea, the dataset (names.txt), and the reference notebooks all come from his open-source repo:
+## Project Structure
 
-Original repo: karpathy/nn-zero-to-hero
-Makemore lectures folder: lectures/makemore
-Part 1 reference notebook: makemore_part1_bigrams.ipynb
-Part 2 reference notebook: makemore_part2_mlp.ipynb
-My notebooks follow the lectures and are written by me as I learn. If you want the canonical, polished versions, go to the original repo and watch the lecture videos. Everything good here is his; any bugs or sloppy bits are mine.
-
-What is makemore?
-makemore is a character-level language model that learns from a list of names and generates new, name-like words. It is a small, hands-on way to learn the fundamentals behind modern language models (including the ones behind ChatGPT-style systems), starting from the simplest possible approach and building up.
-
-What's in this repo (so far)
-Notebook	Lecture topic	What I built / learned
-language_model_biagram.ipynb	Part 1: Bigram language model	Character-level bigram counting, probability tables, sampling new names, negative log likelihood as the loss, and the same model rebuilt as a single-layer neural network trained with gradient descent
-multi_level_perceptron.ipynb	Part 2: MLP language model	Character embeddings, a multi-layer perceptron over a context window, minibatch training, learning-rate search, and train/dev/test splits
-More lectures from the series (batch norm, backprop by hand, WaveNet, and so on) will be added as I complete them.
-
-Project structure
-Makemore_/
-├── .venv/                          
+```text
+neural_net/
 ├── src/
 │   └── makemore/
-│       ├── .ipynb_checkpoints/     
 │       ├── __init__.py
-│       ├── language_model_biagram.ipynb   # Part 1: bigrams
-│       ├── multi_level_perceptron.ipynb   # Part 2: MLP
-│       ├── names.txt               # Dataset of names
-│       └── lr.png                  # Learning-rate exploration plot
+│       ├── language_model_biagram.ipynb
+│       ├── multi_level_perceptron.ipynb
+│       ├── names.txt
+│       └── lr.png
 ├── .gitignore
 ├── .python-version
-├── pyproject.toml                  # Project metadata and dependencies
+├── pyproject.toml
 ├── README.md
 ├── t.png
-└── uv.lock                         # Locked dependency versions
-Getting started
-This project uses uv for fast, reproducible Python environments. The dependency versions are pinned in uv.lock, so you should get the same setup I have.
+└── uv.lock
+```
 
-1. Clone the repo
-bash
-git clone https://github.com/Davidputra6000CC/<buildingtransformers_from_scrratch>.git
-cd <build_transformers_from_scrratch>
-2. Install uv (if you don't have it)
-bash
-# Windows (PowerShell)
+The notebooks are the main learning material. I use them to work through the models step by step, inspect intermediate results, and experiment with the implementation.
+
+## Getting Started
+
+### Prerequisites
+
+- Python version compatible with `.python-version` and `pyproject.toml`
+- [uv](https://docs.astral.sh/uv/)
+- Visual Studio Code with the Jupyter extension, or Jupyter Notebook
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Davidputra6000CC/neural_net.git
+cd neural_net
+```
+
+### 2. Install uv
+
+If you don't have uv installed, follow the [official installation instructions](https://docs.astral.sh/uv/getting-started/installation/).
+
+On Windows, you can install it through PowerShell:
+
+```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
 
-# macOS / Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-Or simply: pip install uv
+### 3. Create the environment and install dependencies
 
-3. Create the environment and install dependencies
-bash
+From the repository root, run:
+
+```bash
 uv sync
-This reads pyproject.toml and uv.lock, creates a .venv, and installs everything. The Python version is picked up from .python-version.
+```
 
-4. Activate the environment
-Windows (PowerShell):
+This creates a project virtual environment, normally `.venv`, and installs the dependencies specified in `pyproject.toml`, using `uv.lock` to reproduce the locked dependency versions where possible.
 
-powershell
-(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& .\.venv\Scripts\Activate.ps1)
-Windows (cmd):
+### 4. Activate the environment
 
-cmd
+**Windows PowerShell**
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+If PowerShell blocks script execution, allow activation for the current terminal session:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+.\.venv\Scripts\Activate.ps1
+```
+
+**Windows Command Prompt**
+
+```cmd
 .venv\Scripts\activate.bat
-macOS / Linux:
+```
 
-bash
+**macOS / Linux**
+
+```bash
 source .venv/bin/activate
-The Set-ExecutionPolicy ... -Scope Process command only applies to the current terminal session, so it doesn't change your system-wide settings.
+```
 
-5. Launch the notebooks
-bash
-jupyter notebook src/makemore
-Or open the folder in VS Code, select the .venv interpreter as the kernel, and open any .ipynb file.
+Activation is optional when using commands such as `uv run`.
 
-Using plain pip instead
-If you'd rather not use uv:
+### 5. Open the notebooks
 
-bash
-python -m venv .venv
-# activate it (see step 4), then:
-pip install -r requirements.txt   # or install the packages listed in pyproject.toml
-Papers and references
-The lectures are grounded in research papers. These are the ones tied to the parts I've covered, plus the ones the original makemore repo lists for upcoming lectures.
+Open the repository in VS Code, select the `.venv` Python interpreter as your notebook kernel, and start with:
 
-Covered so far
+1. `src/makemore/language_model_biagram.ipynb`
+2. `src/makemore/multi_level_perceptron.ipynb`
 
-Bengio et al., 2003. A Neural Probabilistic Language Model. The paper behind the MLP model in Part 2 (embeddings plus a neural net over a context window).
-Coming up in the series (as listed in the original repo)
+Run the cells sequentially to follow the experiments.
 
-Mikolov et al., 2010. Recurrent Neural Network Based Language Model (RNN)
-Graves, 2013. Generating Sequences With Recurrent Neural Networks (LSTM)
-Cho et al., 2014. Learning Phrase Representations using RNN Encoder-Decoder (GRU)
-Oord et al., 2016. WaveNet: A Generative Model for Raw Audio
-Vaswani et al., 2017. Attention Is All You Need (Transformer)
-For direct links, see the original makemore README and the nn-zero-to-hero repo.
+## Research Papers and Further Reading
 
-For learners
-If you're learning from this repo:
+These papers provide background for the language-modeling concepts explored in the lectures and the wider `makemore` progression.
 
-Watch the lecture first, then try to write the code yourself before reading mine.
-Run the notebooks cell by cell and change things. Break the model on purpose and see what happens.
-Compare with Karpathy's originals (linked above). Where they differ, his version is the reference.
-Open an issue or reach out if something is unclear or wrong. I'm learning too, and corrections are welcome.
-For recruiters
-This repo shows how I learn: I work through foundational material from first principles rather than only calling high-level libraries. So far that includes:
+### Neural Probabilistic Language Models
 
-Implementing a language model from scratch (counting, probabilities, sampling)
-Understanding loss functions (negative log likelihood) and gradient-based training
-Building embeddings and an MLP in PyTorch, with proper train/dev/test splits and learning-rate tuning
-Setting up reproducible environments (uv, lockfiles, .gitignore hygiene)
-I'm actively continuing through the series. Feel free to connect with me on LinkedIn.
+**Bengio, Y., Ducharme, R., Vincent, P., & Jauvin, C. (2003).** *A Neural Probabilistic Language Model.*
 
-License and acknowledgements
-The dataset and lecture material belong to their original authors; see the original repository for its license. My notebooks are shared for educational purposes.
+This paper introduces a neural approach to language modeling using learned distributed representations and a neural network conditioned on preceding context. It provides important background for the MLP language model.
 
-Thanks again to Andrej Karpathy for making this knowledge free and accessible.
+[Read the paper — Journal of Machine Learning Research](https://www.jmlr.org/papers/v3/bengio03a.html)
+
+### Related Research for Further Learning
+
+These papers are relevant to the broader progression from recurrent language models to modern architectures. They are included as further reading, not as claims that all these architectures have been implemented in this repository.
+
+- **Mikolov et al. (2010)** — [Recurrent Neural Network Based Language Model](https://www.fit.vut.cz/research/publication/9744)
+- **Graves (2013)** — [Generating Sequences With Recurrent Neural Networks](https://arxiv.org/abs/1308.0850)
+- **Cho et al. (2014)** — [Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
+- **van den Oord et al. (2016)** — [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499)
+- **Vaswani et al. (2017)** — [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+
+For the complete lecture sequence and original references, visit [Andrej Karpathy's Neural Networks: Zero to Hero](https://github.com/karpathy/nn-zero-to-hero) and the [original makemore repository](https://github.com/karpathy/makemore).
+
+## Learning Resources and Credits
+
+This project is based on my study of Andrej Karpathy's open-source work and lectures.
+
+- [Neural Networks: Zero to Hero — original lecture repository](https://github.com/karpathy/nn-zero-to-hero)
+- [makemore — original implementation](https://github.com/karpathy/makemore)
+- [Part 1: Bigram language model notebook](https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part1_bigrams.ipynb)
+- [Part 2: MLP language model notebook](https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part2_mlp.ipynb)
+- [Zero to Hero course page](https://karpathy.ai/zero-to-hero.html)
+
+The original lectures, notebooks, and project belong to their respective authors. This repository documents my learning process, implementations, and experiments while following the lectures. Please refer to the original repositories for their licensing terms and canonical implementations.
+
+## About Me
+
+I'm Garv Sharma, learning machine learning and deep learning by understanding the fundamentals and implementing models step by step.
+
+- **GitHub:** [Davidputra6000CC](https://github.com/Davidputra6000CC)
+- **LinkedIn:** [Garv Sharma](https://www.linkedin.com/in/garv-sharma-157796395/)
+
+This is an ongoing project. As I progress through the lectures, I'll continue documenting what I learn and extending the implementations.
